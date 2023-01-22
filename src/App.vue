@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ColumnList, { ColumnProps } from './components/ColumnList.vue'
 import Header from './components/GlobalHeader.vue'
 import ValidateInput,{RulesProp} from './components/ValidateInput.vue'
-import { reactive} from 'vue'
+import { reactive,ref} from 'vue'
 const testData:ColumnProps[]=[{
   id:1,
   title:'test1的专栏',
@@ -32,24 +32,20 @@ const testData:ColumnProps[]=[{
 }]
 
 const user = { isLogin: true, name: 'liuyi' }
-
+const emailVal=ref('liuyi')
 const emailRules: RulesProp = [{
   type:'required',message:'电子邮箱地址不能为空'
 },{type:'email',message:'请输入正确的电子邮箱格式'}]
-
-
-
 </script>
 
 <template>
- 
   <div class="container">
      <Header :user="user" />
     <!-- <ColumnList :list="testData" /> -->
     <form action="">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
-        <validate-input :rules="emailRules"></validate-input>
+        <validate-input v-model="emailVal" :rules="emailRules"></validate-input> {{ emailVal }}
       </div>
        <div class="mb-3">
          <label for="exampleInputPassword1" class="form-lbal">密码</label>
