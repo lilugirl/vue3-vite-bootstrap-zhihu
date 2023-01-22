@@ -1,6 +1,6 @@
 <template>
   <div class="validate-input-container pb-3">
-     <input type="text" class="form-control" :class="{'is-invalid':inputRef.error}" :value="inputRef.val" @blur="validateInput" @input="updateValue" />
+     <input v-bind="$attrs" class="form-control" :class="{'is-invalid':inputRef.error}" :value="inputRef.val" @blur="validateInput" @input="updateValue" />
      <span v-if="inputRef.error" class="invalid-feedback">{{ inputRef.message }}</span>
   </div>
 </template>
@@ -18,7 +18,9 @@ export default {
     rules:Array as PropType<RulesProp>,
     modelValue:String
   },
+  inheritAttrs:false,
   setup(props,context) {
+    console.log(context.attrs)
     const inputRef = reactive({
       val: props.modelValue || '',
       error: false,

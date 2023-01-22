@@ -36,6 +36,10 @@ const emailVal=ref('liuyi')
 const emailRules: RulesProp = [{
   type:'required',message:'电子邮箱地址不能为空'
 },{type:'email',message:'请输入正确的电子邮箱格式'}]
+const passwordVal=ref('')
+const passwordRules:RulesProp=[{
+  type:'required',message:'密码不能为空'
+}]
 </script>
 
 <template>
@@ -45,11 +49,11 @@ const emailRules: RulesProp = [{
     <form action="">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
-        <validate-input v-model="emailVal" :rules="emailRules"></validate-input> {{ emailVal }}
+        <validate-input type="text" placeholder="请输入邮箱" v-model="emailVal" :rules="emailRules"></validate-input>
       </div>
        <div class="mb-3">
          <label for="exampleInputPassword1" class="form-lbal">密码</label>
-         <input type="password" class="form-control" id="exampleInpuPassword1" />
+         <validate-input type="password" placeholder="请输入密码" v-model="passwordVal" :rules="passwordRules" />     
        </div>
     </form>
   </div>
